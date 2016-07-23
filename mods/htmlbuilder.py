@@ -51,8 +51,5 @@ class HtmlBuilder(object):
         """ Returns the ID of the objects
         returns integer with id/ string on error
         """
-        try:
-            return (self.Name,id(self))
-        except NameError:
-            return "Error while trying to get ID"
+        return (self.Name,id(self))
     ClassName = property(get_ClassName,set_ClassName)
