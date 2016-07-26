@@ -7,7 +7,7 @@ class TableGen(HtmlBuilder):
         with a table skeleton
         """
         super().__init__(ClassName)
-        # Construct the bones of a table 
+        # Construct the skeleton of a table 
         self.HtmlCode = ("<table>\n\t<tr>\n"+
                         "\t\t<!-- Header -->\n"+
                         "\t</tr>\n\t<tr>\n"+
@@ -16,7 +16,7 @@ class TableGen(HtmlBuilder):
         # debug print(self.HtmlCode)
     def add_html(self,prop, name,row=0):
         """ Overweites superclass method
-        Creates main functionallity to modify a table... When done make the
+        Creates main functionallity to modify a table... When done
         put stuff in superclass together
         returns string on error
         """

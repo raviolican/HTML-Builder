@@ -1,11 +1,13 @@
-# Import Classes
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from mods import *
-import re
 myObjects = {}
 
 while True:
     # Split the command
-    cmd = input("> ").split(" ")
+    typedCMD = input("> ")
+    
+    cmd = typedCMD.split(" ",1)
     # Initiate table object and store it in the list
     if(cmd[0] == "table"):
         name = cmd.pop(1)
@@ -15,10 +17,12 @@ while True:
             myObjects[name] = TableGen(name)
         continue   
     # Get ID's of current objects    
-    elif(cmd.pop(0) == "idinfo"):
+    
+    elif(cmd[0] == "idinfo"):
+        cmd.pop(0)
         try:
-            inptObjects = cmd[0].split(",")
-            print(inptObjects)
+            # Stripping spacers
+            inptObjects = list(map(str.strip, cmd[0].split(",")))
             if not all(inptObjects):
                 raise IndexError   
         except IndexError:
@@ -48,8 +52,9 @@ while True:
                     idinfo = list(myObjects[i].get_ids())
                     print("Id for table \""+idinfo[0]+"\"",format(idinfo[1]))
         
-    # Executes commands
+    # Is it an object?
     elif cmd[0] in myObjects:
+        cmd = typedCMD.split(" ")
         if cmd[1] == "getclass":
             print(myObjects[cmd[0]]._ClassName)   
         elif cmd[1] == "setclass":
@@ -68,9 +73,13 @@ while True:
                 except:
                     result = myObjects[cmd[0]].add_html("row",cmd[3])
                 print(result)
+        elif cmd[1] == "mkcode":
+            print(myObjects[cmd[0]].HtmlCode[0])
+            pass
         else:
             print("Command not found")
             continue  
     else:
         print("Command not found")
         continue
+     
