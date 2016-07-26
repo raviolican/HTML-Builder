@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from mods import *
-myObjects = {}
 
+myObjects = {}
 while True:
     # Split the command
     typedCMD = input("> ")
